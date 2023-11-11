@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap');
+
+@tailwind base;
+
+@layer base {
+  html {
+    @apply font-noto;
+  }
+  h1 {
+    @apply text-[44px] font-bold;
+  }
+  h2 {
+    @apply text-[36px] font-bold;
+  }
+  h3 {
+    @apply text-[28px] font-bold;
+  }
+  h4 {
+    @apply text-[24px] font-bold;
+  }
+  h5 {
+    @apply text-[20px] font-bold;
+  }
+  h6 {
+    @apply text-[16px] font-bold;
+  }
+  p {
+    @apply text-[15px] font-normal;
+  }
+  .large {
+    @apply text-[18px] font-medium;
+  }
+  .medium {
+    @apply text-[16px] font-medium;
+  }
+  .small {
+    @apply text-[13px] font-medium;
+  }
+}
+
+@tailwind components;
+
+@tailwind utilities;
