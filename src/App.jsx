@@ -3,7 +3,7 @@ import { Header } from './components/Header';
 
 function App() {
   return (
-    <div className='border-[5px] border-main-purple'>
+    <div className='border-x-[5px] border-main-purple'>
       <Header />
       <Banner />
     </div>
