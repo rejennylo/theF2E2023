@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap');
 
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   html {
@@ -38,10 +40,13 @@
   }
 }
 
-@tailwind components;
-
-@tailwind utilities;
-
 * {
   outline: solid 1px orange;
+}
+
+.swiper-pagination-bullet {
+  @apply bg-white h-3 w-3;
+}
+.swiper-pagination-bullet-active {
+  @apply bg-main-purple h-3 w-3;
 }

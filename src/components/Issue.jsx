@@ -4,7 +4,7 @@ const Card = ({ card, cardClass }) => {
       name="card"
       className={`h-[320px] w-[330px] lg:h-[366px] lg:w-[379px] rounded-xl bg-white p-3 mb-5 lg:mb-0 ${cardClass}`}
     >
-      <span className="inline-block text-white bg-secondary-green text-sm px-2 py-1 mb-2 rounded-tl-xl rounded-br-xl">
+      <span className="inline-block text-white bg-secondary-green text-sm px-2 py-1 mb-2 rounded-tl-lg rounded-br-lg">
         {card.number}
       </span>
       <h5>{card.title}</h5>

@@ -17,7 +17,10 @@ export const Banner = () => {
       >
         <h2 className="mb-20">
           <div className="flex flex-col items-start">
-            <span name="the-f2e" className="flex justify-center w-[345px] lg:w-auto">
+            <span
+              name="the-f2e"
+              className="flex justify-center w-[345px] lg:w-auto"
+            >
               <TheF2ESm className="lg:hidden my-3" />
               <TheF2ELg className="hidden lg:block mb-6" />
             </span>

@@ -26,7 +26,7 @@ export const Header = () => {
 
   return (
     <>
-      <div name="header-wrap" className="lg:border-t-[5px] border-main-purple">
+      <div name="header-wrap">
         <div
           name="phone-top-area"
           className="md:hidden bg-main-purple flex items-center justify-between w-full pt-[24px] pr-[30px] pb-[15px] pl-[50px] relative z-[1000]"
