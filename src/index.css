@@ -50,3 +50,11 @@
 .swiper-pagination-bullet-active {
   @apply bg-main-purple h-3 w-3;
 }
+
+.donate-card-wrap {
+  @apply rounded-[80px] bg-white h-[398px] w-[360px] lg:h-[437px] lg:w-[679px] flex-col items-center justify-center gap-3;
+}
+
+.flex-center-all {
+  @apply flex items-center justify-center;
+}
