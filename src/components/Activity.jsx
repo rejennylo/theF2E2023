@@ -15,9 +15,9 @@ const monthEn = [
   'DEC.',
 ];
 
-const CarouselCardColumn = ({ card }) => {
+const CardColumn = ({ card }) => {
   return (
-    <li className='h-[370px] w-[300px] rounded-xl bg-white overflow-hidden mx-3 relative flex-none '>
+    <div className="h-[370px] w-[300px] lg:h-[493px] lg:w-[483px] rounded-xl bg-white overflow-hidden relative flex-none">
       <span
         name="month-day"
         className="flex flex-col justify-center items-center absolute top-0 right-0 z-[1] text-white font-bold bg-secondary-green h-[65px] w-[65px]"
@@ -27,12 +27,12 @@ const CarouselCardColumn = ({ card }) => {
       </span>
       <span
         name="card-img-wrap"
-        className="relative flex flex-col items-center h-[201px] w-[300px]"
+        className="relative flex flex-col items-center h-[201px] w-[300px] lg:h-[325px] lg:w-[483px]"
       >
         <img
           src={card.image}
           alt="image"
-          className="object-center object-cover h-[201px] w-full"
+          className="object-center object-cover h-[201px] lg:h-[325px] w-full"
         />
         <span name="triangle" className="block">
           <span className="absolute bottom-0 border-[15px] border-t-transparent  border-r-transparent border-b-white border-l-transparent -translate-x-1/2"></span>
@@ -42,13 +42,13 @@ const CarouselCardColumn = ({ card }) => {
         <h5 className="h-[60px] mb-2">{card.title}</h5>
         <p className="line-clamp-3">{card.text}</p>
       </div>
-    </li>
+    </div>
   );
 };
 
-const CarouselCardRow = ({ card }) => {
+const CardRow = ({ card }) => {
   return (
-    <li className="h-[232px] w-[686px] flex rounded-xl bg-white overflow-hidden relative flex-none">
+    <div className="h-[232px] max-w-[686px] flex rounded-xl bg-white overflow-hidden relative flex-none">
       <span name="card-img-wrap" className="h-full w-[276px]">
         <img
           src={card.image}
@@ -63,30 +63,21 @@ const CarouselCardRow = ({ card }) => {
         <h5 className="mb-2">{card.title}</h5>
         <p className="line-clamp-3">{card.text}</p>
       </div>
-    </li>
+    </div>
   );
 };
 
-const Carousel = ({ cards }) => {
-  const isLargeScreen = window.innerWidth >= 1100;
+const Carousel = ({ cards, className }) => {
   return (
-    <div name="carousel" className="h-[641px] w-full">
-      <ul
+    <div name="carousel" className={className}>
+      <div
         name="cards-wrap"
-        className="flex flex-nowrap overflow-hidden overflow-x-scroll lg:justify-start"
+        className="flex flex-nowrap overflow-hidden overflow-x-scroll lg:justify-start w-full gap-5"
       >
         {cards.map((card, i) => {
-          return isLargeScreen ? (
-            i === 0 ? (
-              <CarouselCardColumn key={i} card={card} />
-            ) : (
-              <CarouselCardRow key={i} card={card} />
-            )
-          ) : (
-            <CarouselCardColumn key={i} card={card} />
-          );
+          return <CardColumn key={i} card={card} />;
         })}
-      </ul>
+      </div>
       <div name="dots" className="flex justify-center p-[17px]">
         <GoDotFill className="h-6 w-6 text-main-purple" />
         <GoDotFill className="h-6 w-6 text-white" />
@@ -96,15 +87,38 @@ const Carousel = ({ cards }) => {
   );
 };
 
+const Board = ({ cards, className }) => {
+  return (
+    <div name="carousel" className={className}>
+      <div
+        name="cards-wrap"
+        className="flex w-full m-auto justify-between mb-12 gap-5"
+      >
+        {cards.map((card, i) => {
+          return i === 0 && <CardColumn key={i} card={card} />;
+        })}
+        <div className="flex flex-col justify-between">
+          {cards.map((card, i) => {
+            return i !== 0 && <CardRow key={i} card={card} />;
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const Activity = ({ cards }) => {
   return (
-    <div name="activity-wrap">
+    <div name="activity-wrap" className="bg-medium-gray">
       <div
         name="activity-container"
-        className="flex flex-col items-center h-[502px] w-[screen] bg-medium-gray"
+        className="flex flex-col items-center max-w-[1200px] m-auto"
       >
         <h2 className="mb-5">最新活動</h2>
-        <Carousel cards={cards} />
+        <div className="w-full">
+          <Carousel cards={cards} className="lg:hidden" />
+          <Board cards={cards} className="hidden lg:block" />
+        </div>
       </div>
     </div>
   );
