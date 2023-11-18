@@ -52,7 +52,7 @@
 }
 
 .donate-card-wrap {
-  @apply rounded-[80px] bg-white h-[398px] w-[360px] lg:h-[437px] lg:w-[679px] flex-col items-center justify-center gap-3;
+  @apply box-border rounded-[80px] bg-light-gray h-[398px] w-full max-w-[679px] flex-col items-center justify-center gap-3 p-12;
 }
 
 .flex-center-all {

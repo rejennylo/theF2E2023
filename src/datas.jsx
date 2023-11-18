@@ -56,3 +56,9 @@ export const issueCards = [
       '製作教育資料：出版寵物飼養手冊、影片和線上課程，讓所有有意飼養寵物的家庭都能輕鬆取得正確的知識',
   },
 ];
+
+export const donateDatas = [
+  { title: '貓星人之友', number: '600', peopleAmount: '9957' },
+  { title: '貓星人大使', number: '6000', peopleAmount: '2000' },
+  { title: '貓星人之友', number: '60000', peopleAmount: '9957' },
+];
