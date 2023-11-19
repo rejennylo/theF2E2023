@@ -136,6 +136,7 @@ export const Donate = () => {
 
   return (
     <div
+      id="donate"
       name="donate-wrap"
       className="bg-[url(../src/assets/bg-donate.png)] bg-center bg-cover"
     >

@@ -41,7 +41,7 @@
 }
 
 * {
-  outline: solid 1px orange;
+  /* outline: solid 1px orange; */
 }
 
 .swiper-pagination-bullet {

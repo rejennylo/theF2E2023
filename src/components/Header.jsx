@@ -8,15 +8,7 @@ import { ReactComponent as Close } from '../assets/icons/close.svg';
 import { ReactComponent as Coin } from '../assets/icons/coin.svg';
 import { useState } from 'react';
 
-export const Header = () => {
-  const menuItems = [
-    { text: '候選人主張', style: 'text' },
-    { text: '最新活動', style: 'text' },
-    { text: '政策議題', style: 'text' },
-    { text: '民眾服務信箱', style: 'text' },
-    { text: '小額捐款', style: 'button' },
-  ];
-
+export const Header = ({ menus, scrollToId }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const handleMenuClick = (e) => {
@@ -26,7 +18,7 @@ export const Header = () => {
 
   return (
     <>
-      <div name="header-wrap">
+      <div id="home" name="header-wrap">
         <div
           name="phone-top-area"
           className="md:hidden bg-main-purple flex items-center justify-between w-full pt-[24px] pr-[30px] pb-[15px] pl-[50px] relative z-[1000]"
@@ -53,10 +45,11 @@ export const Header = () => {
             </h1>
             <Vector className="lg:hidden" onClick={handleMenuClick} />
             <ul name="menu-lg-wrap" className="hidden lg:flex">
-              {menuItems.map((item, i) => {
+              {menus.slice(1, 6).map((item, i) => {
                 return item.style === 'text' ? (
                   <li
                     key={i}
+                    onClick={() => scrollToId(item.id)}
                     className={`flex items-center hover:border-b-2 hover:border-main-purple ${
                       i !== 0 ? 'ml-8' : ''
                     }`}
@@ -66,7 +59,7 @@ export const Header = () => {
                     </a>
                   </li>
                 ) : (
-                  <li key={i}>
+                  <li key={i} onClick={() => scrollToId(item.id)}>
                     <a
                       href="#"
                       className="flex items-center justify-center gap-1 w-[160px] bg-main-purple rounded-full ml-8"
@@ -99,15 +92,22 @@ export const Header = () => {
               name="menu-items"
               className="flex flex-col items-end py-3 px-[14px]"
             >
-              {menuItems.map((item, i) => {
+              {menus.slice(1, 6).map((item, i) => {
                 return item.style === 'text' ? (
-                  <li key={i} className="mb-8">
+                  <li
+                    key={i}
+                    className="mb-8"
+                    onClick={() => scrollToId(item.id, setMenuIsOpen)}
+                  >
                     <a href="#" className="text-xl font-bold text-light-gray">
                       {item.text}
                     </a>
                   </li>
                 ) : (
-                  <li key={i}>
+                  <li
+                    key={i}
+                    onClick={() => scrollToId(item.id, setMenuIsOpen)}
+                  >
                     <a
                       href="#"
                       className="flex items-center justify-center gap-1 w-[160px] bg-light-gray rounded-full"

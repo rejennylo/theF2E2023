@@ -25,7 +25,7 @@ const Card = ({ card, cardClass }) => {
 
 export const Issue = ({ cards }) => {
   return (
-    <div name="issue-wrap" className="bg-main-purple">
+    <div id="issue" name="issue-wrap" className="bg-main-purple">
       <div
         name="issue-container"
         className="m-auto max-w-[1200px] flex flex-col items-center"

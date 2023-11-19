@@ -109,7 +109,7 @@ const Board = ({ cards, className }) => {
 
 export const Activity = ({ cards }) => {
   return (
-    <div name="activity-wrap" className="bg-medium-gray">
+    <div id="activity" name="activity-wrap" className="bg-medium-gray">
       <div
         name="activity-container"
         className="flex flex-col items-center max-w-[1200px] m-auto"

@@ -62,3 +62,18 @@ export const donateDatas = [
   { title: '貓星人大使', number: '6000', peopleAmount: '2000' },
   { title: '貓星人之友', number: '60000', peopleAmount: '9957' },
 ];
+
+export const menuItems = [
+  { id: 'home', text: '首頁', style: 'text' },
+  { id: 'banner', text: '候選人主張', style: 'text' },
+  { id: 'activity', text: '最新活動', style: 'text' },
+  { id: 'issue', text: '政策議題', style: 'text' },
+  { id: 'service', text: '民眾服務信箱', style: 'text' },
+  { id: 'donate', text: '小額捐款', style: 'button' },
+];
+
+export const footerInfos = [
+  '地址 : 台北市喵星區毛茸茸大道88號喵喵大樓3樓',
+  '電話 : (02) 888-5678',
+  '郵件 : meowoffice@linmeow.tw',
+];

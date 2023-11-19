@@ -1,21 +1,6 @@
 import { ReactComponent as LogoGray } from '../assets/icons/Logo-gray.svg';
 
-const menus = [
-  '首頁',
-  '最新活動',
-  '民眾服務信箱',
-  '候選人主張',
-  '政策議題',
-  '小額捐款',
-];
-
-const infos = [
-  '地址 : 台北市喵星區毛茸茸大道88號喵喵大樓3樓',
-  '電話 : (02) 888-5678',
-  '郵件 : meowoffice@linmeow.tw',
-];
-
-export const Footer = () => {
+export const Footer = ({ menus, infos, scrollToId }) => {
   return (
     <div name="footer-wrap" className="bg-main-purple">
       <div name="footer-container" className="m-auto max-w-[1200px]">
@@ -29,8 +14,8 @@ export const Footer = () => {
               <ul className="flex flex-col items-center">
                 {menus.slice(0, 3).map((item, i) => {
                   return (
-                    <li key={i}>
-                      <p className="text-white leading-6">{item}</p>
+                    <li key={i} onClick={() => scrollToId(item.id)}>
+                      <p className="text-white leading-6">{item.text}</p>
                     </li>
                   );
                 })}
@@ -38,16 +23,18 @@ export const Footer = () => {
               <ul className="flex flex-col items-center">
                 {menus.slice(3, 6).map((item, i) => {
                   return (
-                    <li key={i}>
-                      <p className="text-white leading-6">{item}</p>
+                    <li key={i} onClick={() => scrollToId(item.id)}>
+                      <p className="text-white leading-6">{item.text}</p>
                     </li>
                   );
                 })}
               </ul>
             </div>
           </div>
-          <div name="info" className='my-5 mx-5'>
-            <span className="text-secondary-yellow block text-center pb-2">Office information</span>
+          <div name="info" className="my-5 mx-5">
+            <span className="text-secondary-yellow block text-center pb-2">
+              Office information
+            </span>
             <ul>
               {infos.map((item, i) => {
                 return (

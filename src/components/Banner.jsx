@@ -10,7 +10,7 @@ import { ReactComponent as EnSloganLg } from '../assets/KEEP-IT-POSSIBLE-lg.svg'
 
 export const Banner = () => {
   return (
-    <div name="banner-wrap" className="bg-medium-gray">
+    <div id="banner" name="banner-wrap" className="bg-medium-gray">
       <div
         name="banner-container"
         className="m-auto max-w-[1200px] px-4 py-[20px] lg:py-[150px] relative"
