@@ -17,6 +17,7 @@ const GoToDonate = ({ isDonateOpenClick, hidden }) => {
         </span>
         <a
           href="#"
+          name="toOpen"
           className="flex-center-all rounded-full  gap-1 w-[160px] h-[60px] lg:w-[222px] lg:h-[82px] bg-main-purple"
           onClick={isDonateOpenClick}
         >
@@ -30,7 +31,12 @@ const GoToDonate = ({ isDonateOpenClick, hidden }) => {
   );
 };
 
-const IsDonate = ({ isDonateCloseClick, hidden, donateDatas }) => {
+const IsDonate = ({
+  isDonateCloseClick,
+  isDonateDoneClick,
+  hidden,
+  donateDatas,
+}) => {
   const [amount, setAmount] = useState('');
   const [customAmount, setCustomAmount] = useState('');
   const [donateFocus, setDonateFocus] = useState(null);
@@ -119,6 +125,7 @@ const IsDonate = ({ isDonateCloseClick, hidden, donateDatas }) => {
         <div name="icons" className="flex justify-center gap-3">
           <a
             href="#"
+            name="toClose"
             className="flex-center-all rounded-full gap-1 w-[120px] h-[60px] lg:w-[176px] lg:h-[82px] bg-white border-2 border-main-purple"
             onClick={isDonateCloseClick}
           >
@@ -128,10 +135,12 @@ const IsDonate = ({ isDonateCloseClick, hidden, donateDatas }) => {
           </a>
           <button
             type="submit"
+            name="isDone"
+            onClick={isDonateDoneClick}
             className="flex-center-all rounded-full gap-1 w-[160px] h-[60px] lg:w-[222px] lg:h-[82px] bg-main-purple"
           >
             <Coin className="fill-white h-[30px] w-[30px] lg:h-[40px] lg:w-[40px]" />
-            <span className="inline-block text-[20px] lg:text-[28px] font-bold text-white">
+            <span className="inline-block text-[20px] lg:text-[28px] font-bold text-white ">
               我要捐款
             </span>
           </button>
@@ -141,18 +150,40 @@ const IsDonate = ({ isDonateCloseClick, hidden, donateDatas }) => {
   );
 };
 
-const DonateDone = ({ hidden }) => {
+const DonateDone = ({ isDonateCloseClick, hidden }) => {
   return (
-    <div name="isdonate-wrap" className={`donate-card-wrap ${hidden}`}></div>
+    <div name="isdonate-wrap" className={`donate-card-wrap ${hidden}`}>
+      <div className="w-full w-min-[150px] h-[114px] flex flex-col items-center justify-center">
+        <h6 className="mb-2">感謝您成為喵星大使</h6>
+        <span className="block text-[25px] font-bold text-main-purple">
+          捐款金額
+        </span>
+        <span className="block text-[30px] font-bold text-main-purple">
+          NT. 6000
+        </span>
+      </div>
+      <a
+        href="#"
+        name="toClose"
+        className="flex-center-all rounded-full gap-1 w-[120px] h-[60px] lg:w-[176px] lg:h-[82px] bg-white border-2 border-main-purple"
+        onClick={isDonateCloseClick}
+      >
+        <span
+          className="inline-block text-[20px] lg:text-[28px] font-bold text-main-purple"
+        >
+          返回
+        </span>
+      </a>
+    </div>
   );
 };
 
 export const Donate = ({ donateDatas }) => {
-  const [isDonateOpen, setIsDonateOpen] = useState(false);
+  const [isDonateState, setIsDonateState] = useState('toOpen');
 
   const handleClick = (e) => {
     e.preventDefault();
-    setIsDonateOpen(!isDonateOpen);
+    setIsDonateState(e.target.name);
   };
 
   return (
@@ -167,14 +198,18 @@ export const Donate = ({ donateDatas }) => {
       >
         <GoToDonate
           isDonateOpenClick={handleClick}
-          hidden={isDonateOpen ? 'hidden' : 'flex'}
+          hidden={isDonateState === 'toClose' ? 'flex' : 'hidden'}
         />
         <IsDonate
           isDonateCloseClick={handleClick}
-          hidden={isDonateOpen ? 'flex' : 'hidden'}
+          isDonateDoneClick={handleClick}
+          hidden={isDonateState === 'toOpen' ? 'flex' : 'hidden'}
           donateDatas={donateDatas}
         />
-        {/* <DonateDone /> */}
+        <DonateDone
+          isDonateCloseClick={handleClick}
+          hidden={isDonateState === 'isDone' ? 'flex' : 'hidden'}
+        />
       </div>
     </div>
   );
