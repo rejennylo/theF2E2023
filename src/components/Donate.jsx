@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import { ReactComponent as Coin } from '../assets/icons/coin.svg';
-import { donateDatas } from '../datas';
 
 const GoToDonate = ({ isDonateOpenClick, hidden }) => {
   return (
     <div name="gotodonate-wrap" className={`donate-card-wrap ${hidden}`}>
-      <h2 className="lg:text-[60px] font-bold">小額捐款</h2>
-      <p className="text-[16px] lg:text-[24px] font-semibold">
+      <h2 className="lg:text-[52px] font-bold">小額捐款</h2>
+      <p className="text-[16px] lg:text-[24px]">
         您的小筆捐款， 是每隻毛孩未來的大大動力！
       </p>
       <p className="flex flex-col items-center text-main-purple">
-        <span className="block text-[25px] lg:text-[35px] font-bold">
+        <span className="block text-[22px] lg:text-[35px] font-bold">
           累積總金額
         </span>
-        <span className="block text-[30px] lg:text-[60px] font-bold mb-3">
+        <span className="block text-[30px] lg:text-[55px] font-bold mb-3">
           NT$987,655,873
         </span>
         <a
@@ -34,6 +33,7 @@ const GoToDonate = ({ isDonateOpenClick, hidden }) => {
 const IsDonate = ({ isDonateCloseClick, hidden, donateDatas }) => {
   const [amount, setAmount] = useState('');
   const [customAmount, setCustomAmount] = useState('');
+  const [donateFocus, setDonateFocus] = useState(null);
 
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
@@ -47,7 +47,7 @@ const IsDonate = ({ isDonateCloseClick, hidden, donateDatas }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const finalAmount= customAmount||amount
+    const finalAmount = customAmount || amount;
     console.log(finalAmount);
   };
 
@@ -56,22 +56,29 @@ const IsDonate = ({ isDonateCloseClick, hidden, donateDatas }) => {
       <h5>選擇捐款方案</h5>
       <form action="" className="w-full" onSubmit={handleSubmit}>
         <div name="donate-amount" className="flex flex-wrap justify-between">
-          {donateDatas.map((data, i) => {
+          {donateDatas?.map((data, i) => {
+            const name = 'donation-' + i;
+            const borderClass =
+              donateFocus === name
+                ? 'border-main-purple'
+                : 'border-medium-gray';
             return (
               <label
-                key={i}
+                key={`donation-${i}`}
                 className="w-[48%] lg:w-[31%] max-w-[177px] mb-3 relative"
               >
                 <input
                   type="radio"
-                  id="donation"
-                  name="donation"
                   value={data.number}
                   checked={amount === data.number}
                   onChange={handleAmountChange}
                   className="absolute top-0 left-0 opacity-0"
                 />
-                <div className="rounded-md border-2 border-medium-gray checked:border-main-purple w-full w-min-[150px] h-[114px] flex flex-col items-center justify-center">
+                <div
+                  name={name}
+                  className={`rounded-md border-2 w-full w-min-[150px] h-[114px] flex flex-col items-center justify-center ${borderClass}`}
+                  onClick={() => setDonateFocus(name)}
+                >
                   <h6>{data.title}</h6>
                   <span className="block text-[20px] font-bold">
                     NT. {data.number}
@@ -87,7 +94,15 @@ const IsDonate = ({ isDonateCloseClick, hidden, donateDatas }) => {
             htmlFor="customAmount"
             className="w-[48%] max-w-[177px] lg:w-full lg:max-w-full mb-3"
           >
-            <div className="rounded-md border-2 border-medium-gray checked:border-main-purple w-full w-min-[150px] h-[114px] lg:h-[86px] flex flex-col lg:flex-row items-center justify-center px-3">
+            <div
+              name="customAmount"
+              className={`rounded-md border-2 w-full w-min-[150px] h-[114px] lg:h-[86px] flex flex-col lg:flex-row items-center justify-center px-3 ${
+                donateFocus === 'customAmount'
+                  ? 'border-main-purple'
+                  : 'border-medium-gray'
+              }`}
+              onClick={() => setDonateFocus('customAmount')}
+            >
               <h6>自訂捐款金額</h6>
               <input
                 type="text"
@@ -96,7 +111,7 @@ const IsDonate = ({ isDonateCloseClick, hidden, donateDatas }) => {
                 placeholder="請輸入金額"
                 value={customAmount}
                 onChange={handleCustomAmountChange}
-                className="w-[75%] p-3 m-3"
+                className="w-[75%] p-3 m-3 focus:outline-none focus:ring-1 focus:ring-main-purple rounded-md"
               />
             </div>
           </label>
@@ -126,7 +141,13 @@ const IsDonate = ({ isDonateCloseClick, hidden, donateDatas }) => {
   );
 };
 
-export const Donate = () => {
+const DonateDone = ({ hidden }) => {
+  return (
+    <div name="isdonate-wrap" className={`donate-card-wrap ${hidden}`}></div>
+  );
+};
+
+export const Donate = ({ donateDatas }) => {
   const [isDonateOpen, setIsDonateOpen] = useState(false);
 
   const handleClick = (e) => {
@@ -153,6 +174,7 @@ export const Donate = () => {
           hidden={isDonateOpen ? 'flex' : 'hidden'}
           donateDatas={donateDatas}
         />
+        {/* <DonateDone /> */}
       </div>
     </div>
   );

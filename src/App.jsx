@@ -1,5 +1,5 @@
 import { activityCards } from './datas';
-import { issueCards, menuItems, footerInfos } from './datas';
+import { donateDatas, issueCards, menuItems, footerInfos } from './datas';
 import { Activity } from './components/Activity';
 import { Banner } from './components/Banner';
 import { Header } from './components/Header';
@@ -20,11 +20,11 @@ function App() {
 
   return (
     <div className="border-x-[5px] md:border-t-[5px]  border-main-purple">
-      <Header menus={menuItems}  scrollToId={scrollToId}/>
+      <Header menus={menuItems} scrollToId={scrollToId} />
       <Banner />
       <Activity cards={activityCards} />
       <Issue cards={issueCards} />
-      <Donate />
+      <Donate donateDatas={donateDatas} />
       <Footer menus={menuItems} scrollToId={scrollToId} infos={footerInfos} />
     </div>
   );
