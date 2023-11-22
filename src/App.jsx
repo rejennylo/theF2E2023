@@ -6,6 +6,7 @@ import { Header } from './components/Header';
 import { Issue } from './components/Issue';
 import { Donate } from './components/Donate';
 import { Footer } from './components/Footer';
+import { Service } from './components/Service';
 
 function App() {
   // 捲動到指定位置
@@ -25,6 +26,7 @@ function App() {
       <Activity cards={activityCards} />
       <Issue cards={issueCards} />
       <Donate donateDatas={donateDatas} />
+      <Service />
       <Footer menus={menuItems} scrollToId={scrollToId} infos={footerInfos} />
     </div>
   );
