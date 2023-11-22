@@ -15,7 +15,7 @@ const Text = () => {
 const Alert = ({ setAlertOn, hidden }) => {
   const handleClick = (event) => {
     event.preventDefault();
-    setAlertOn(false)
+    setAlertOn(false);
   };
 
   return (
@@ -24,7 +24,7 @@ const Alert = ({ setAlertOn, hidden }) => {
       className={`donate-card-wrap ${hidden} absolute flex flex-col`}
     >
       <div className="w-full w-min-[150px] h-[114px] flex flex-col items-center justify-center m-auto">
-        <h5 className='mb-3'>感謝您抽出寶貴的時間給予我們寶貴的建議。</h5>
+        <h5 className="mb-3">感謝您抽出寶貴的時間給予我們寶貴的建議。</h5>
         <p>
           我們非常重視您的意見，它是我們不斷改進和提升服務的動力。您提出的建議已經轉交給相關部門進行評估，我們將努力在未來的服務中加以考慮和實施。
         </p>
@@ -41,7 +41,7 @@ const Alert = ({ setAlertOn, hidden }) => {
       </a>
     </div>
   );
-}
+};
 
 const Form = () => {
   const [inputValue, setInputValue] = useState({
@@ -50,6 +50,8 @@ const Form = () => {
     phoneNum: '',
     message: '',
   });
+  const [submitError, setSubmitError] = useState('');
+
   const [alertOn, setAlertOn] = useState(false);
 
   const inputItems = [
@@ -58,6 +60,12 @@ const Form = () => {
     { name: 'phoneNum', text: '您的手機' },
     { name: 'message', text: '您的建言' },
   ];
+
+  const validateEmail = (mail) => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(mail).toLowerCase());
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,7 +79,18 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setAlertOn(true)
+    for (let key in inputValue) {
+      if (!inputValue[key]) {
+        setSubmitError('所有欄位都必須填寫。');
+        return;
+      }
+    }
+    if (!validateEmail(inputValue.mail)) {
+      setSubmitError('請輸入有效的電子郵件地址。');
+      return;
+    }
+    setSubmitError('');
+    setAlertOn(true);
     console.log(
       `name: ${inputValue.name}, mail: ${inputValue.mail}, phone: ${inputValue.phoneNum}, message: ${inputValue.message}`
     );
@@ -94,13 +113,14 @@ const Form = () => {
               type="text"
               placeholder={item.text}
               name={item.name}
-              className="w-full h-full border rounded-md border-medium-gray"
+              className="w-full h-full border rounded-md border-medium-gray p-3"
               value={inputValue[item.name]}
               onChange={handleChange}
             />
           </label>
         );
       })}
+      {submitError && <p className='text-red-500'>{submitError}</p>}
       <button
         type="submit"
         name="submit"
@@ -117,13 +137,16 @@ const Form = () => {
 
 export const Service = () => {
   return (
-    <div name="service-wrap" className="w-full bg-medium-gray">
+    <div id="service" name="service-wrap" className="w-full bg-medium-gray">
       <div
         name="service-container"
-        className="flex flex-col lg:flex-row max-w-[1200px] m-auto px-[5%]"
+        className="flex flex-col lg:flex-row max-w-[1200px] m-auto px-[5%] pb-[100px] lg:pb-0 relative"
       >
         <Text />
         <Form />
+        <span className="absolute max-w-[530px] max-h-[267px] bottom-[-85px]">
+          <img src="../src/assets/footer-image.png" />
+        </span>
       </div>
     </div>
   );
