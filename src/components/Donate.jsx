@@ -179,7 +179,7 @@ const DonateDone = ({ isDonateCloseClick, hidden }) => {
 };
 
 export const Donate = ({ donateDatas }) => {
-  const [isDonateState, setIsDonateState] = useState('toOpen');
+  const [isDonateState, setIsDonateState] = useState('toClose');
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -193,7 +193,7 @@ export const Donate = ({ donateDatas }) => {
       className="bg-[url(../src/assets/bg-donate.png)] bg-center bg-cover"
     >
       <div
-        name="donate-container"
+        name="donacontainerte-"
         className="m-auto max-w-[1200px] h-[488px] lg:h-[527px] flex justify-center items-center lg:justify-start p-3"
       >
         <GoToDonate

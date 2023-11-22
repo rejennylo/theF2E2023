@@ -48,8 +48,8 @@ const CardColumn = ({ card }) => {
 
 const CardRow = ({ card }) => {
   return (
-    <div className="h-[232px] max-w-[686px] flex rounded-xl bg-white overflow-hidden relative flex-none">
-      <span name="card-img-wrap" className="h-full w-[276px]">
+    <div className="h-[232px] w-auto xl:w-[686px] flex rounded-xl bg-white overflow-hidden relative">
+      <span name="card-img-wrap" className="h-[232px] max-w-[276px]">
         <img
           src={card.image}
           alt="image"
