@@ -57,7 +57,7 @@ export const Banner = () => {
             </p>
           </div>
           <span className="absolute h-auto w-[242px] lg:w-[500px] -top-[300px] lg:-top-[600px] -right-1 z-1">
-            <img src="../src/assets/maio-photo.png" alt="image" />
+            <img src="./maio-photo.png" alt="image" />
           </span>
         </div>
       </div>

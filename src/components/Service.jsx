@@ -145,7 +145,7 @@ export const Service = () => {
         <Text />
         <Form />
         <span className="absolute max-w-[530px] max-h-[267px] bottom-[-85px]">
-          <img src="../src/assets/footer-image.png" />
+          <img src="./footer-image.png" />
         </span>
       </div>
     </div>
