@@ -123,8 +123,8 @@ const IsDonate = ({
           </label>
         </div>
         <div name="icons" className="flex justify-center gap-3">
-          <a
-            href="#"
+          <button
+            type="button"
             name="toClose"
             className="flex-center-all rounded-full gap-1 w-[120px] h-[60px] lg:w-[176px] lg:h-[82px] bg-white border-2 border-main-purple"
             onClick={isDonateCloseClick}
@@ -132,7 +132,7 @@ const IsDonate = ({
             <span className="inline-block text-[20px] lg:text-[28px] font-bold text-main-purple">
               返回
             </span>
-          </a>
+          </button>
           <button
             type="submit"
             name="isDone"
@@ -162,18 +162,16 @@ const DonateDone = ({ isDonateCloseClick, hidden }) => {
           NT. 6000
         </span>
       </div>
-      <a
-        href="#"
+      <button
+        type="button"
         name="toClose"
         className="flex-center-all rounded-full gap-1 w-[120px] h-[60px] lg:w-[176px] lg:h-[82px] bg-white border-2 border-main-purple"
         onClick={isDonateCloseClick}
       >
-        <span
-          className="inline-block text-[20px] lg:text-[28px] font-bold text-main-purple"
-        >
+        <span className="inline-block text-[20px] lg:text-[28px] font-bold text-main-purple">
           返回
         </span>
-      </a>
+      </button>
     </div>
   );
 };
@@ -183,7 +181,7 @@ export const Donate = ({ donateDatas }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    setIsDonateState(e.target.name);
+    setIsDonateState(e.currentTarget.name);
   };
 
   return (
